@@ -18,8 +18,11 @@ namespace Theoria_Dot_Net
                 Thread.Sleep(80);
             }
         }
+
+       
         static void Main(string[] args)
-        {
+        { 
+            List<Thread> threads = new List<Thread>();
             Console.WriteLine("45 * 12 = ?");
 
             var ct = Thread.CurrentThread;
@@ -29,7 +32,8 @@ namespace Theoria_Dot_Net
                 Console.WriteLine($"Main thread {i}");
 
                 Thread t1 = new Thread(foo);
-                t1.IsBackground = true;
+                threads.Add(t1);
+                //t1.IsBackground = true;
 
                 t1.Start();
                 Console.WriteLine("Main thread is going to sleep .............:");
@@ -38,6 +42,7 @@ namespace Theoria_Dot_Net
             }
             Console.WriteLine("BOOM");
             Console.WriteLine("Main thread is over ...........");
+            threads.ForEach(_ => _.Abort());
         }
     }
 }

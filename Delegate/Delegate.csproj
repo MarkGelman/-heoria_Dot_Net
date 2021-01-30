@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="17-01-21\_17-01-21.cs" />
+    <Compile Include="17-01-21\_17-01-21 Action_Func.cs" />
     <Compile Include="13-01-21\LambdaByDelegate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,7 +52,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="17-01-21\17-01-21.txt" />
+    <Content Include="17-01-21\17-01-21 Action_Func.txt" />
     <Content Include="TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

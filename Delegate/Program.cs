@@ -67,22 +67,62 @@ namespace Delegate
                                    {
                                        for (int i = 0; i < _.Length; i++)
                                        {
-                                           _[i] = _[i] * 0;
+                                           _[i] =  0;
                                        }
                                    }
                                     ,arr );
             // No 4
-            double[] arr_d = { 1.1, 2, 1.5, 1.4,8,7,10,5.5,5.5};
-            obj.Executor(_ =>
+            
+            obj.ExecutorDouble((rra,min)=> 
             {
-                double sum = 0;
-                for (int i = 0; i < _.Length-1; i++)
+                double sum = 0.0;
+                foreach (var item in rra)
                 {
-                    if(_[i]>_[i+1])
-                        sum += _[i];
+                    sum = sum + item > min ? item : 0.0;
                 }
-            },arr);
-                                        
+                return sum;
+            });
+
+            obj.RunOnArray(_ => Console.WriteLine(_), arr);
+
+            //ещё пример
+            //Сначала длиный способ
+            int count100 = 0;
+            for(int i=0;i<arr.Length; i++)
+            {
+                if (arr[i]>100)
+                {
+                    count100++;
+                }
+            }
+
+            //A теперь короткий
+            count100 = obj.CountOnArray(x => x > 100, arr);
+
+           //Меняя условие нужно снова писать:
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] ==  0)
+                {
+                    count100++;
+                }
+            }
+
+            // а можно так:
+            count100 = obj.CountOnArray(x => x ==0, arr);
+
+            /* --------------------------------- Упражнение ------------------------------------------------------*/
+            //No 1
+            List<int> listToSend = new List<int> { 1, -2, 1000, 2112, 8, -239, 0 };
+            List<int> result = obj.ExecutorList(x => x > 0, listToSend);
+            result = obj.ExecutorList(x => x > listToSend.Sum()/listToSend.Count , listToSend);
+            result = obj.ExecutorList(x => x <-100, listToSend);
+
+            //No 2
+            bool trueOrFalse;
+            trueOrFalse=obj.TrueOrFalse(x => x > 0, listToSend);
+            trueOrFalse = obj.TrueOrFalse(x => x > listToSend.Sum() / listToSend.Count, listToSend);
+            trueOrFalse = obj.TrueOrFalse(x => x < -100, listToSend);
         }
     }
        
@@ -120,7 +160,7 @@ namespace Delegate
             Console.WriteLine(result);
         }*/
 
-
+       
 
    
 }

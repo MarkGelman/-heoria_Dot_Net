@@ -9,7 +9,7 @@ namespace Delegate
 {
     class Program
     {
-        public string name1;
+        /*public string name1;
         public delegate void Signature_For_Function_Void_With_No_Parameters();
         public delegate float Signature_For_Function_float_with_float_parameter(float f);
         
@@ -32,26 +32,61 @@ namespace Delegate
         static void MyFunc_Void_No_Parameters()
         {
             Console.WriteLine("I am MyFunc_Void_No_Parameters");
-        }
+        }*/
 
         static void Main(string[] args)
         {
-            // functions first class member
+            /*// functions first class member
             // delegate ==> method signature 
             //MyFunc_Void_No_Parameters();
 
             Thread t = new Thread(MyFunc_Void_No_Parameters);
 
-            
-        
-
             Study1(MyFunc_Void_No_Parameters);
 
-            Study2("i love delegate!");
+            Study2("i love delegate!");*/
 
+            /*
+               ---------------------------------------- CLASSWORK 17.01.21 ----------------------------------------------------------
+                        1. Executor (<lambda-print the number * 2> (void))
+                        2. Executor (<lambda-return Math.Sqrt(the_number)> (float))
+            */
+
+            _17_01_21 obj = new _17_01_21();
+            obj.Executor(x => Console.WriteLine(x * 2), 100);
+            Console.WriteLine(obj.Executor(x => Math.Sqrt(x), 4));
+
+            //CW2:
+            // No 1
+            obj.Executor((x,y) => Console.WriteLine(x + y), 100,3);
+            // No 2
+            Console.WriteLine(obj.Executor(x => x*x,24.3));
+            // No 3
+            int[] arr = { 1, 2, 4, 9 };
+            obj.Executor( _ =>
+                                   {
+                                       for (int i = 0; i < _.Length; i++)
+                                       {
+                                           _[i] = _[i] * 0;
+                                       }
+                                   }
+                                    ,arr );
+            // No 4
+            double[] arr_d = { 1.1, 2, 1.5, 1.4,8,7,10,5.5,5.5};
+            obj.Executor(_ =>
+            {
+                double sum = 0;
+                for (int i = 0; i < _.Length-1; i++)
+                {
+                    if(_[i]>_[i+1])
+                        sum += _[i];
+                }
+            },arr);
+                                        
         }
-
-        /// CLASSWORK:
+    }
+       
+        /*/// CLASSWORK:
 
         // 1 create a functions in delegate of ParameterizedThreadStart
         // 2 create the thread , in ctor pass the function you just created name 
@@ -83,7 +118,9 @@ namespace Delegate
         {
             double result = f(x, y);
             Console.WriteLine(result);
-        }
+        }*/
 
-    }
+
+
+   
 }

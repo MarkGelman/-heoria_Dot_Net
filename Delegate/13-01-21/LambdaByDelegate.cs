@@ -15,6 +15,7 @@ namespace Delegates1
         public delegate int Signature_for_function_int_no_parameter();
         public delegate double Signature_for_function_double_with_doublex2_parameters(double d1, double d2);
 
+        //---------------------------------------- CLASSWORK 17.01.21 ----------------------------------------------------------
         static double Multiply(double d1, double d2)
         {
             return d1 * d2;
@@ -100,8 +101,8 @@ namespace Delegates1
                 string str = s1 + s2;
                 Console.WriteLine(str.ToLower());
             });
-
-            F4((f3,-4.555f, 19.4545f),Console.WriteLine((F3, );
+            
+           Console.WriteLine(F4(F3, -4.555f, 19.4545f));
         }
         // create a signature (delegate) D1 that retruns void and accepts 2 string parameters\
         public delegate void D1(string s1, string s2);
@@ -132,13 +133,13 @@ namespace Delegates1
 
         // create a function F4 that gets a method with type D2 and two floats and invokes the function with the 2 floats
         // from main Console.Writeline the result of F4 and send it F3 as parameter, -4.555f, 19.4545
-        static void F4(D2 d,float f1,float f2)
+        static float F4(D2 d,float f1,float f2)
         {
-            d(f1, f2);
+            return d(f1, f2);
         }
 
-        
-        
+
+
         // from main Console.Writeline the result of F4 and send it lambda expression which perform minus 20.38 5.25
         // from main Console.Writeline the result of F4 and send it lambda expression which perform multiply 14.4 60.27
         // from main Console.Writeline the result of F4 and send it lambda expression which perform div, 
@@ -146,5 +147,8 @@ namespace Delegates1
         // from main Console.Writeline the result of F4 and send it lambda expression which perform pow 43 91.26
         // from main Console.Writeline the result of F4 and send it lambda expression which returns the bigger 45.71 31.19
         // from main Console.Writeline the result of F4 and send it lambda expression which returns the smaller 54.24 75.06
+
+        
     }
+        //---------------------------------------- CLASSWORK 17.01.21 ----------------------------------------------------------
 }

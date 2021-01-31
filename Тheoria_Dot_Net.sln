@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threads", "MultyTrades\Thre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate", "Delegate\Delegate.csproj", "{9FD73FCD-3E8F-4676-A648-E7714DBF5FF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq", "Linq\Linq.csproj", "{7483448E-0B77-45C3-80D0-0ECA27803F4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9FD73FCD-3E8F-4676-A648-E7714DBF5FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FD73FCD-3E8F-4676-A648-E7714DBF5FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FD73FCD-3E8F-4676-A648-E7714DBF5FF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7483448E-0B77-45C3-80D0-0ECA27803F4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7483448E-0B77-45C3-80D0-0ECA27803F4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7483448E-0B77-45C3-80D0-0ECA27803F4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7483448E-0B77-45C3-80D0-0ECA27803F4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

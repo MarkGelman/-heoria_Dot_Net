@@ -1,6 +1,46 @@
 ﻿ /* -----------------------------------------------CLASSWORK 20.01.21 ----------------------------------------------------*/
 
- Функции начинающиеся с MyForEach - это ф-ции, которые мы написали для использования собственного ForEach введя в них тот
- функционал, который нам нужен в данный момент. 
- Таже ф-ция, но  с генерик  (public void MyForeachZugi<T>(List<T> list, Action<T> foreachAction)) позволяем обращаться к ней любого типа
+ 1.Функции начинающиеся с MyForEach - это ф-ции, которые мы написали для использования собственного ForEach введя в них тот
+    функционал, который нам нужен в данный момент. 
+ 2.Таже ф-ция, но  с генерик  (public void MyForeachZugi<T>(List<T> list, Action<T> foreachAction)) позволяет обращаться к ней любого типа
  функции. 
+
+ 3.Если мы хотим получить лист при помощи лика WHERE, то на надо использовать ToList,чтобы преобразовать возвращаемый резултат в 
+   IENURABLE. 
+     К примеру: 
+                    public List<T> MyWhereGeneric<T>(List<T> list, Func<T, bool> whereFunc)
+                    {
+                        List<T> result = new List<T>();
+                        foreach (var item in list)
+                        {
+                            if (whereFunc(item))
+                            {
+                                result.Add(item);
+                            }
+                        }
+                        return result;
+
+                    List<int> result_list1 = list.Where(x => x > 0).ToList()
+
+4.Если используем ф-цию генерик и посылаем ей как параметр определёный тип, то не надо при обращении к ф-ции указывать её тип (можно да,
+  а можни и нет):
+
+    List<double> list_double = new List<double>() { -0.979, 4.1232, 3.17, 80.0 }; --> лист определён как DOUBLE
+
+     List<double> result_list3 = obj.MyWhereGeneric<double>(list_double, x => x > 0); --> можно определить тип ф-ции
+     List<double> result_list4 = obj.MyWhereGeneric(list_double, x => x > 0); --> можно также не определять тип ф-ции, так как мы 
+                                                                                  посылаем параметр который присваивает свой тип генерику
+                                                                                  T = типу list_double, кот double
+5.Чтобы сделать CASTING существуют следующие варианты (расширения SELECT и Cast):
+    List<int> ints1 = doubles.Select(_=>(int)_).ToList;
+                    или
+    List<int> ints1 = doubles.Сast<int>.ToList;
+
+6.Чтобы из каждого члена массива сделать отделный анонимный объект нужно использовать расширение SELECT:
+       var res1 = new List<double>() { -0.979, 4.1232, 3.17, 80.0 }.Select(_ => new { Original = _, Abs = Math.Abs(_), 
+                                                                          Pow2 = Math.Pow(_, 2) });
+       res1.ToList().ForEach(_ => { Console.WriteLine($"{_.Original} {_.Abs} {_.Pow2}"); });
+
+https://gitlab.com/dotnet290320/31.01.2021/-/blob/master/tagril.txt
+
+https://gitlab.com/dotnet290320/31.01.2021/-/blob/master/targil_pool.txt

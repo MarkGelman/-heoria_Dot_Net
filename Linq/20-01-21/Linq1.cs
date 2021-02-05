@@ -60,5 +60,72 @@ namespace Linq
             }
             return result;
         }
+
+        public T MyFindGeneric<T>(List<T> list, Func<T, bool> findFunc)
+        {
+            List<T> result = new List<T>();
+            foreach (var item in list)
+            {
+                if (findFunc(item))
+                {
+                    return item;
+                }
+            }
+            return default(T);
+        }
+
+        public List<T> MyFindAllGeneric<T>(List<T> list, Func<T, bool> findFunc)
+        {
+            List<T> result = new List<T>();
+            foreach (var item in list)
+            {
+                if (findFunc(item))
+                {
+                    result.Add(item);
+                }
+            }
+            if (result.Count == 0) return null;
+            return result;
+        }
+
+        public int MyFindIndexGeneric<T>(List<T> list, Func<T, bool> findFunc)
+        {
+            foreach (var item in list)
+            {
+                if (findFunc(item))
+                {
+                    return list.IndexOf(item);
+                }
+            }
+            return -1;
+        }
+
+        public T MyFindLastGeneric<T>(List<T> list, Func<T, bool> findFunc)
+        {
+            List<T> result = new List<T>();
+            result[0] = default(T);
+            foreach (var item in list)
+            {
+                if (findFunc(item))
+                {
+                    result[0] = item;
+                }
+            }
+            return default(T);
+
+        }
+
+        public int MyFindLastIndexGeneric<T>(List<T> list, Func<T, bool> findFunc)
+        {
+            
+            for (int i= list.Count-1; i<0;i--)
+            {
+                if (findFunc(list[i]))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
     }
 }

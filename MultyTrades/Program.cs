@@ -100,7 +100,7 @@ namespace Theoria_Dot_Net
             Thread.Sleep(100);
             Console.WriteLine("Main finished...");
 
-            /* -------------------------------------------- Solution Tread Safe queue -----------------------------------------------------*/
+            /* -------------------------------------------- Solution_Targil -----------------------------------------------------*/
             SolutionTargil sl = new SolutionTargil();
             List<Thread> thread = new List<Thread>();
             thread.Add(new Thread(() => {
@@ -118,7 +118,7 @@ namespace Theoria_Dot_Net
                     Thread.Sleep(r.Next(500, 1000));
                 }
             }));
-            thread.Add(new Thread(() => {
+            threads.Add(new Thread(() => {
                 for (int i = 0; i < 5; i++)
                 {
                     sl.Peep();

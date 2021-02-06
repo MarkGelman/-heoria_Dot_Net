@@ -1,0 +1,11 @@
+﻿Create 300 threads that prints the number from 1 to 10
+use Stopwatch to measure how long it took to initialize them and start them...
+now use the ThreadPool with the same 300 threads
+use Stopwatch to measure how long it took to run them ...
+fatser?
+
+Practice ConcurrentQueue:
+Create the ConcurrentQueue
+try in 3 theads to :
+Enqueue, Dequeue, TryPeek
+

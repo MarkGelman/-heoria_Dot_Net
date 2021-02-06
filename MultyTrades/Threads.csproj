@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="31-01-21\targil.txt" />
+    <Content Include="targil_TreadPool.txt" />
     <Content Include="treads_theoria.txt" />
   </ItemGroup>
   <ItemGroup />

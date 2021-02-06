@@ -1,4 +1,4 @@
-﻿
+﻿Solution of the targil in lesson of date 31-01-21 in time 02:42:50
 1. create 2 threads
    thread which runs from 1 to 10 (cw + sleep 1 second)
    thread which runs from 11 to 20 (cw + sleep 1 second)

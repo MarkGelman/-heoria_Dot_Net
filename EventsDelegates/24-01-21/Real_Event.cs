@@ -93,38 +93,62 @@ namespace EventsDelegates
         }
     //2.
         //create new class
+        public class FizzBuzzEventArgs:EventArgs
+        {
+            public int Number { get; set; }
+        }
         public class DividedBy_5or3
         {
             //create 2 events : DividedBy3 and Divided by 5
-            public event EventHandler dividedBy3;
-            public event EventHandler dividedBy5;
+            public event EventHandler <FizzBuzzEventArgs> FizzOccured;
+            public event EventHandler <FizzBuzzEventArgs> BuzzOccured;
 
             //add corresponsing methods(event args + event handler) which prints:
             //if dividded by 3 - Fizz
             //if devided by 5- Buzz
-            public void DividedBy3(object sender, EventArgs e)
-            {
-                Console.WriteLine($"{sender}");
-            }
-
-            public void DividedBy5(object sender, EventArgs e)
-            {
-                Console.WriteLine($"{sender}");
-            }
-
             //create a function which runs from 1 to 20 and print number to screen
-                //if the number can be divided by 3 without reminder - invoke the DividedBy3
-                //if the number can be divided by 5 without reminder - invoke the DividedBy5
+            //if the number can be divided by 3 without reminder - invoke the DividedBy3
+            //if the number can be divided by 5 without reminder - invoke the DividedBy5
+            public void FireEventFizz(int number)
+            {
+               if (FizzOccured != null)
+                {
+                    FizzOccured.Invoke(this, new FizzBuzzEventArgs { Number = number });
+                }
+            }
 
+            public void FireEventBuzz(int number)
+            {
+                if (BuzzOccured != null)
+                {
+                    BuzzOccured(this, new FizzBuzzEventArgs { Number = number });
+                }
+            }
+
+            private void HandleFizz(object sender,FizzBuzzEventArgs e)
+            {
+                Console.Write($"Fizz[{e.Number}]" );
+            }
+
+            private void HandleBuzz(object sender, FizzBuzzEventArgs e)
+            {
+                Console.Write($"Buzz[{e.Number}]");
+            }
             public void PrintNumber()
             {
+                FizzOccured += HandleFizz;
+                BuzzOccured += HandleBuzz;
                 for (int i=1; i<=20;i++)
                 {
+                    Console.WriteLine(i+ ":");
                     if (i % 3 == 0)
-                        DividedBy3("Fizz", EventArgs.Empty);
+                        FireEventFizz(i);
                     if (i % 5 == 0)
-                        DividedBy5("Buzz", EventArgs.Empty);
+                        FireEventBuzz(i);
+                    Console.WriteLine();
                 }
+                FizzOccured -= HandleFizz;
+                BuzzOccured -= HandleBuzz;
             }
 
         }

@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="27-01-21\Arieala.cs" />
+    <Compile Include="27-01-21\Ariela.cs" />
     <Compile Include="27-01-21\Bank.cs" />
     <Compile Include="27-01-21\BuyHouseCommercial.cs" />
     <Compile Include="27-01-21\Customer.cs" />
@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="EventsDelegate.txt" />
+    <Content Include="Events.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

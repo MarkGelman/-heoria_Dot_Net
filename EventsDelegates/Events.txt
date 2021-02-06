@@ -1,0 +1,239 @@
+﻿Информация ниже относится к примерам приведённым в классе REAL_EVENT:
+
+1.EVENTS --  это делегаты 
+2.Как и в обычных делегатах есть обобщающие делегаты : ACTION or FUNC or PREDICATE
+	Так и в делегатах типа EVENT есть обобщающий делегат и он EventHendler;
+3.Этот делегат получает два параметра :
+	1) object - кто был причиной события которое случилось и задействовало делегат
+	2) EventArgs - он служит для передачи параметров ф-ции:
+		а. Прежде всего EventArgs - это внутрений класс, кот изначально определён в .NET. Это пустой класс в котором есть только 
+			одно поле (public static readonly EventArgs Empty;) и его конструктор (public EventArgs();)
+    3) Этот делегат не может знать все типы полей которые он должен будет передать записаным в него ф-циям 
+		при возникновении того или иного события.
+		Поэтому чтобы можно было передать через него параметры нужно создать отдельный класс, который будет наследовать от внутреннего
+		класса .NET имя которого EventArgs .
+		
+		Пример из класса REAL_EVENT:
+
+					public class VideoEncoderEventArgs : EventArgs
+					{
+						public string VideoName { get; set; }
+					}
+
+4.Делегат EventHandler - это не обычный делегат. С обычным делегатом мы можем через объект класса делать всё что угодно из любого места
+	программы. Но с делегатом типа event ( public event EventHandler<VideoEncoderEventArgs> invocationMethodsList;) мы не можем делать
+	д-вия типа:
+
+			1) обнулить записаную в него инфу --> invocationMethodsList = null -- 
+						или
+            2)задействовать его --> invocationMethodsList.Invoke(null, new VideoEncoderEventArgs { VideoName = "bla bla bla)" })
+
+	если они  находятся вне того класса в котором был создан этот делегат (в котором он был определён). 
+	Это сделано для того чтобы "защитить" делегат типа event от нежелательных изменений каким-то пользователем.
+
+**************************************************************************************************************************************
+
+														27-01-21
+
+**************************************************************************************************************************************
+	1. Важно в названии делегата-события указать время когда он будет использован. К примеру:
+		onLoaded - когда загрузка закончилась
+		onLoading - в процессе окончания
+	2. Events выполняются из ф-ций предназначеных для задействования EVENT-ов, т.е. мы не пишем EVENT в функции в которой требуется
+		выполнение этого EVENT-а, а обращаемся из этой ф-ции к ф-ции которая конкретно создана для данного EVENT-а.
+		Пример из Bank.cs:
+		// Ф-ция которая создана только для обращения к EVENT-у, передачу ему требуемых параметров и проверки его на null (подписаляс
+		     ли кто-то на него вообще или нет)
+
+			 public void PassedTheMillionBanace(Customer c)
+				{
+					if (PassedMillion != null)
+					{
+						PassedMillion(this, new PersonDetailsEventArgs
+						{
+							MobileNumber = c.MobileNumber,
+							Name = c.Name
+						});
+					}
+				}
+
+		// Ф-ция которой требуется задействовать EVENT находящийся в ф-ции public void PassedTheMillionBanace(Customer c) приведёной
+			выше:
+
+			public void Deposite(Customer c, double amount)
+				{
+					c.Balance += amount;
+					if (c.Balance > 1_000_000 && !c.GotPriceForOver1M)
+					{
+						// Passed the 1M
+						PassedTheMillionBanace(c);
+					}
+				}
+
+	3. Cинтаксис и логика использования EVENT-ов:
+			1) должны быть созданы классы в которых определяется EVENT как поле класса. В нашем случае это классы Bank.cs и Ariela.cs
+				a. В классе Bank.cs подписью такого EVENT-а является следующая строка:
+
+					public event EventHandler<PersonDetailsEventArgs> PassedMillion
+
+				b. В классе Ariela.cs подписью такого EVENT-а является следующая строка:	
+					
+					public event EventHandler<PersonDetailsEventArgs> WonWeekend;
+
+			2) Внутри таких классов обязательно должна быть создана ф-ция их EVENT-а: 
+
+			 !!!
+			      Созднание такой функции требуется, поскольку считается очень плохой практикой вызов непосредствено 
+				  EVENT-а из любой функции класса. Вызов EVENT-а должен быть всегда из одной функции.
+			 !!! 
+				
+				a. В классе Bank.cs:
+
+					public void PassedTheMillionBanace(Customer c)
+						{
+							if (PassedMillion != null)
+							{
+								PassedMillion(this, new PersonDetailsEventArgs
+								{
+									MobileNumber = c.MobileNumber,
+									Name = c.Name
+								});
+							}
+						}
+			
+				b. В классе Ariela.cs:	
+					
+					public void NotofyWhoWonWeekeend(string name, string mobile)
+						{
+							if (WonWeekend != null)
+							{
+								WonWeekend.Invoke(this, new PersonDetailsEventArgs
+								{
+									Name = name,
+									MobileNumber = mobile
+								});
+							}
+						}
+
+				c. Такая функция обязана вызывать EVENT после его проверки на NULL.
+				   В нашем примере строками вызова EVENT-а являются:
+
+						a) в классе Bank.cs строка:
+
+							PassedMillion(this, new PersonDetailsEventArgs
+								{
+									MobileNumber = c.MobileNumber,
+									Name = c.Name
+								});
+
+						b) в классе Ariela.cs строка:	
+
+							WonWeekend.Invoke(this, new PersonDetailsEventArgs
+								{
+									Name = name,
+									MobileNumber = mobile
+								});
+
+				d. Выше приведённая строка вызова EVENT-а должна содержать в себе два параметра:
+					a)  sender (всегда первый) -- это объект спровоцировавший событие. В нашем случае это объект BANK или Ariela 
+						(поскольку вызов того или иного EVENTA возможен только из класса в котором он был создан как поле, то SENDER
+						практически всегда будет иметь значение THIS)
+					   
+					   
+
+					b) параметр типа  :
+						.1) всегда второй параметр EVENT-а
+						.2) EventArgs -- это внутрений класс .NET. Функция которого состоит в передаче значений параметров функция,
+						    находящимся внутри данного EVENT-а.
+							Поскольку EventArgs - это общий класс для всех EVENT-ов,то естественно, что он не может содержать в себе
+							параметры для конкретно отдельного события (невозможно знать что потребуется конкретно в том или ином
+							событии).
+
+							!!! 
+							    Поэтому каждая программ должна в себе содержать класс, который наследует функционал от класса
+								EventArgs и создаёт объект содержащий в себе параметры для функций внутри EVENT-а.
+							!!!
+			
+			3) каждая программа должна в себе содержать класс, который создаёт объект содержащий в себе параметры для функций внутри
+			   EVENT-а ввиде  полей класса:
+			   
+					!!!
+						Если же эти функции не принимают параметров ,то тогда нет смысла в создании для них отдельного класса.
+						В таком случае в качестве второго параметра EVENT-а выступает сам класс EventArgs, но с добавлением EMPTY
+						EventArgs.Empty. К примеру WonWeekend.Invoke(this,EventArgs.Empty)
+					!!!
+
+				a. В нашем случае таким классом является класс PersonDetailsEventArgs
+				   
+				   public class PersonDetailsEventArgs : EventArgs
+					{
+						public string Name { get; set; }
+						public String MobileNumber { get; set; }
+					}
+
+					поля являются как свойствами класса PersonDetailsEventArgs так и параметрами для EVENT-а. Чтобы данные свойства
+					стали параметрами функций находящихся внутри EVENT-а,нужно создать безымяный объект класса внутри строки вызова
+					EVENT-а.В нашем примере это выглядит так:
+
+					a) в классе Bank.cs:
+
+							PassedMillion(this, new PersonDetailsEventArgs
+								{
+									MobileNumber = c.MobileNumber,
+									Name = c.Name
+								});
+
+					b) в классе Ariela.cs:	
+
+							WonWeekend.Invoke(this, new PersonDetailsEventArgs
+								{
+									Name = name,
+									MobileNumber = mobile
+								});
+
+
+		 4) !!!
+				В каждой программе использующей EVENT должен быть класс содержащий функции, которые "подписываются" на данный EVENT.
+				A также функции которые вкладывает функции EVENT-а в сам EVENT.
+				Таким образом этот класс связывает все классы которые собираются использовать этот EVENT.
+			!!!
+
+			В данной программе таким классом является класс FATAL и класс BuyHouseCommercial:
+
+			 public class Fatal
+			 
+				public void GiveFreeWeekend(object sender, PersonDetailsEventArgs e)
+					{
+						// give weekend for promotion (marketing)
+						// Name
+						// Mobile phone
+						if (sender is Bank)
+						{
+							Console.WriteLine($"{e.Name} is getting free weekend from Bank.. calling {e.MobileNumber}");
+						}
+						else
+						{
+							Console.WriteLine($"{e.Name} is getting free weekend .. calling {e.MobileNumber}");
+						}
+
+					}
+
+				public void RegisterBankWithFreeWeekend(Bank b)
+					{
+						b.PassedMillion += GiveFreeWeekend;
+
+						// forbidden in Events
+						//b.PassedMillion = GiveFreeWeekend;
+						//b.PassedMillion(null, EventArgs.Empty);
+					}
+
+			  public void RegisterBankWithFreeWeekend(Ariela a)
+					{
+						a.WonWeekend += GiveFreeWeekend;
+					}
+
+			  public void DettachFromBankFreeWeekend(Bank b)
+					{
+						b.PassedMillion -= GiveFreeWeekend;
+					}
+	

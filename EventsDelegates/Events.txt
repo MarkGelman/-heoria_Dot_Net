@@ -236,4 +236,30 @@
 					{
 						b.PassedMillion -= GiveFreeWeekend;
 					}
+
+Упражнение (смотреть проэкт FizzBuzzWinform в папке ITAY. Объяснение в конце записи лекции от 27-01-21 ):
+Winform or Console
+Calculator:
+
+Add
+Subtract
+Div
+Multiply
+HandleDivideByZero ==> print "cannot divide by zero"
+ResultLargerThan 1,000,000
+
+
+Event FirePlus
+Event FireMinus
+Event FireDiv
+Event FireMul
+Event DivideByZero
+Event DisplayOverload == cannpt print result or print "E"
+
+FirePlus += Add 
+...
+
+get 2 numbers from user 
+get operation 
+
 	

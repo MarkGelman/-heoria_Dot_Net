@@ -1,4 +1,5 @@
 ﻿using BankEvents;
+using HW27012021;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +71,26 @@ namespace EventsDelegates
 
             a.PlayLotto();
 
+            /* HW _FizzBuzz*/
+
+            hw_FizzBuzz fb = new hw_FizzBuzz();
+            fb.FizzOccured += fb.HandleFizz;
+            fb.BuzzOccured += fb.HandleBuzz;
+            for (int i = 1; i <= 30; i++)
+            {
+                Console.Write(i + ": ");
+                if (i % 3 == 0)
+                {
+                    // fire fizz event
+                    fb.FireEventFizz(i);
+                }
+                if (i % 5 == 0)
+                {
+                    // fire buzz event
+                    fb.FireEventBuzz(i);
+                }
+                Console.WriteLine();
+            }
         }
     }
 }

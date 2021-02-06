@@ -1,0 +1,17 @@
+﻿
+1. create 2 threads
+   thread which runs from 1 to 10 (cw + sleep 1 second)
+   thread which runs from 11 to 20 (cw + sleep 1 second)
+   make them run one AFTER the other 1.. 20
+   use Join
+2. Make a Safe (Concurrent) Queue (item is int or T)
+    use lock { ... } critical section
+      void Push (item) -> will add it to the list in index 0
+      item Pop () -> will remove from the list in the last location
+      item Peep () -> will return the last item
+      void Clear () will remove the entire items
+      int Counter () will return the number of items
+      from Main:
+        create 3 threads
+        give each thread a task (*etgar:random)
+        fire the trheads in parralel

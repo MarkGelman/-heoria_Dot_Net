@@ -6,10 +6,26 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+
 namespace Theoria_Dot_Net
 {
     class Program
     {
+        static Random r = new Random();//targil
+        static object key = new object();//WorkerQueue
+        public static void Counter()
+        {
+            Console.WriteLine($"=== thread : {Thread.CurrentThread.ManagedThreadId} before lock ...");
+            lock (key)
+            {
+                for (int i = 1; i <= 10; i++)
+                {
+                    Console.WriteLine($"=== thread : {Thread.CurrentThread.ManagedThreadId} i: {i}");
+                    Thread.Sleep(1 * 1000);
+                }
+            }
+        }
+
         static void foo()
         {
             for (int i = 1; i < 10; i++)
@@ -43,6 +59,80 @@ namespace Theoria_Dot_Net
             Console.WriteLine("BOOM");
             Console.WriteLine("Main thread is over ...........");
             threads.ForEach(_ => _.Abort());
+
+            /* ---------------------------------------------------------- 31-01-21 -----------------------------------------------------------*/
+
+            WorkerQueue workerQueue = new WorkerQueue();
+            //new Thread(Counter).Start();
+            //new Thread(Counter).Start();
+            //new Thread(Counter).Start();
+            //new Thread(Counter).Start();
+
+            WorkerQueue wq = new WorkerQueue(10);
+            wq.Produce(() =>
+            {
+                for (int i = 1; i <= 5; i++)
+                {
+                    Console.WriteLine($"=== i_1_5 {i}");
+                    Thread.Sleep(1 * 1000);
+                }
+            });
+
+            wq.Produce(() =>
+            {
+                for (int i = 1; i <= 3; i++)
+                {
+                    Console.WriteLine($"=== i_1_3 {i}");
+                    Thread.Sleep(1 * 1000);
+                }
+            });
+
+            wq.Produce(() =>
+            {
+                for (int i = 1; i <= 8; i++)
+                {
+                    Console.WriteLine($"=== i_1_8 {i}");
+                    Thread.Sleep(1 * 1000);
+                }
+            });
+
+            Console.WriteLine("Main waiting...");
+            Thread.Sleep(100);
+            Console.WriteLine("Main finished...");
+
+            /* -------------------------------------------- Solution Tread Safe queue -----------------------------------------------------*/
+            SolutionTargil sl = new SolutionTargil();
+            List<Thread> thread = new List<Thread>();
+            thread.Add(new Thread(() => {
+                for (int i = 0; i < 100; i++)
+                {
+                    sl.Push(i);
+                    Thread.Sleep(r.Next(100, 500));
+                }
+            }));
+            thread.Add(new Thread(() => {
+                Thread.Sleep(500);
+                for (int i = 0; i < 50; i++)
+                {
+                    sl.Pop();
+                    Thread.Sleep(r.Next(500, 1000));
+                }
+            }));
+            thread.Add(new Thread(() => {
+                for (int i = 0; i < 5; i++)
+                {
+                    sl.Peep();
+                    Thread.Sleep(r.Next(100, 200));
+                }
+            }));
+            Console.WriteLine("Wait...");
+            //Thread.Sleep(3000);
+            foreach (var item in threads)
+            {
+                item.Start();
+            }
+
+
         }
     }
 }

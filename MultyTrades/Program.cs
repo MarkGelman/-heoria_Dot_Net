@@ -62,13 +62,13 @@ namespace Theoria_Dot_Net
 
             /* ---------------------------------------------------------- 31-01-21 -----------------------------------------------------------*/
 
-            WorkerQueue workerQueue = new WorkerQueue();
+            Pattern_Queue workerQueue = new Pattern_Queue();
             //new Thread(Counter).Start();
             //new Thread(Counter).Start();
             //new Thread(Counter).Start();
             //new Thread(Counter).Start();
 
-            WorkerQueue wq = new WorkerQueue(10);
+            Pattern_Queue wq = new Pattern_Queue(10);
             wq.Produce(() =>
             {
                 for (int i = 1; i <= 5; i++)

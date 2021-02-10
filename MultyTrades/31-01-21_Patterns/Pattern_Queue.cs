@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Theoria_Dot_Net
 {
-    public class WorkerQueue
+    public class Pattern_Queue
     {
         List<Action> m_queue = new List<Action>();
 
@@ -40,11 +40,11 @@ namespace Theoria_Dot_Net
             }
             work_func.Invoke();
         }
-        public WorkerQueue()
+        public Pattern_Queue()
         {
 
         }
-        public WorkerQueue(int num_workers)
+        public Pattern_Queue(int num_workers)
         {
             m_workers = new List<Thread>();
             for (int i = 0; i < num_workers; i++)

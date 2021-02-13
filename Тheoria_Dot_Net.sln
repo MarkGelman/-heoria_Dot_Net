@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "EventsDelegates\E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PG_DUMP", "PG_DUMP\PG_DUMP.csproj", "{8CF0AE2C-448F-4FC9-B97A-EA9F1F97DB73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JIRA", "JIRA\JIRA.csproj", "{8CE459AA-FAC6-40B7-A8A0-7DF2A9ACC794}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8CF0AE2C-448F-4FC9-B97A-EA9F1F97DB73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CF0AE2C-448F-4FC9-B97A-EA9F1F97DB73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CF0AE2C-448F-4FC9-B97A-EA9F1F97DB73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE459AA-FAC6-40B7-A8A0-7DF2A9ACC794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE459AA-FAC6-40B7-A8A0-7DF2A9ACC794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE459AA-FAC6-40B7-A8A0-7DF2A9ACC794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE459AA-FAC6-40B7-A8A0-7DF2A9ACC794}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,13 @@
 ﻿
+using Theoria_Dot_Net._31_01_21_Patterns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using static Theoria_Dot_Net._31_01_21_Patterns.SingleTon;
+using MultyTrades;
 
 namespace Theoria_Dot_Net
 {
@@ -60,7 +62,7 @@ namespace Theoria_Dot_Net
             Console.WriteLine("Main thread is over ...........");
             threads.ForEach(_ => _.Abort());
 
-            /* ---------------------------------------------------------- 31-01-21 -----------------------------------------------------------*/
+            /* ---------------------------------------------------------- Pattern_Queue 31-01-21 -----------------------------------------------------------*/
 
             Pattern_Queue workerQueue = new Pattern_Queue();
             //new Thread(Counter).Start();
@@ -131,7 +133,45 @@ namespace Theoria_Dot_Net
             {
                 item.Start();
             }
+/* ***************************************************  07-02-21 **********************************************************************************/
 
+   /* -------------------------------------------- !!! PATTERN SINLETON !!! -------------------------------------------------------------*/
+
+
+            ClockSingleton.GetInstance().GetDateTimeByRegion();
+            if (ClockSingleton.GetInstance() == ClockSingleton.GetInstance())
+            {
+                Console.WriteLine("equal");
+            }
+            else
+            {
+                Console.WriteLine("Not equal!");
+            }
+
+            // ClockSingleton.GetInstance() = null; // Error!
+            ClockSingleton sing = ClockSingleton.GetInstance();
+            sing = null; // will not change the singleton
+
+            /* -------------------------------------------- Solution_Targil_SINGLETON  -----------------------------------------------------*/
+          
+                DbConnection conn1 = ConnPooL.GetInstance().GetConnection();
+                ConnPooL.GetInstance().ReturnConnection(conn1);
+
+            /* -------------------------------------------- MONITOR_LOCK  ---------------------------------------------------------*/
+            
+                Thread t1 = new Thread(() =>
+                {
+                    try { Monitor_LOCK.DoWork(); } catch { Console.WriteLine("Exception"); }
+                });
+                Thread t2 = new Thread(() =>
+                {
+                    try { Monitor_LOCK.DoWork(); } catch { Console.WriteLine("Exception"); }
+                });
+                t1.Start();
+                t2.Start();
+
+                t1.Join();
+                t2.Join();
 
         }
     }

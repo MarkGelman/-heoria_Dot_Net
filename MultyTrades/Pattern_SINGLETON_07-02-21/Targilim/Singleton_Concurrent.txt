@@ -1,0 +1,7 @@
+﻿Create MyStack class
+Singleton
+List<int>
+Pop 3x -- thread safe : 1)lock 2)monitor enter exit (try + finally) 3)Concurrent Stack (no lock required)
+Push 3x -- thread safe : 1)lock 2)monitor enter exit (try + finally) 3)Concurrent Stack (no lock required)
+Peek -- thread safe : 1)lock 2)monitor enter exit (try + finally) 3)Concurrent Stack (no lock required)
+

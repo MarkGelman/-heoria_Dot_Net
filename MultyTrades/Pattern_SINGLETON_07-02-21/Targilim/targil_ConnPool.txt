@@ -1,0 +1,16 @@
+﻿reate class DbConnection
+create class MyConnectionPool [Singleton]
+  MyConnectionPool:
+  1. Singleton stuff....
+  2. private List<DbConnection> m_connections
+  3. in the ctor create 10 connections [10x new DbConnection]
+  4. function called GetConnection
+     DbConnection GetConnection()
+     checks if m_connections.Count > 0 if so ->
+            remove last connection from the list (the list should be 1 shorted)
+                  if not return null;
+  5. function called RestoreConnection
+     void RestoreConnection(DbConnection) --> add the connection to m_connections
+use lock wisely! :)
+*etgar: GetConnection if list is empty then wait and check every 100 mili if a connection was returned
+

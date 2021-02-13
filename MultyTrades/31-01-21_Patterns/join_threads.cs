@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MultyTrades
+namespace Theoria_Dot_Net
 {
     class join_threads
     {

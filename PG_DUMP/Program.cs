@@ -10,6 +10,9 @@ namespace PG_DUMP
     {
         static void Main(string[] args)
         {
+            // НЕТ ПРОГРАММЫ!!!!!!! 
+
+            //ТОЛЬКО ФАЙЛ ТИПА .txt объясняющий как пользоваться PG_DUMP (PG_DUMP.txt)
         }
     }
 }

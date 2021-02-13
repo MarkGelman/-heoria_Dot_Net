@@ -1,0 +1,9 @@
+﻿symmetric print:
+
+Create a singlton class of FileManager
+this class has 3 functions:
+CreateFile --> with lock. if file already exist  then do nothing
+DeleteFile --> with lock. if file already exist then delete it. otherwise do nothing
+WriteToFile --> wih lock. if file not exist then wait till it exists
+use: lock, wait, pulse, pulseall ...
+now try to write, write, delete, write,create, create, delete, write, write ....

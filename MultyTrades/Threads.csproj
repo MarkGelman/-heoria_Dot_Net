@@ -44,22 +44,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="31-01-21_Patterns\join_threads.cs" />
-    <Compile Include="Pattern_SINGLETON_07-02-21\Monitor_LOCK.cs" />
-    <Compile Include="Pattern_SINGLETON_07-02-21\SingleTon.cs" />
+    <Compile Include="31-01-21_Patterns\Pattern_SINGLETON_07-02-21\Monitor_LOCK.cs" />
+    <Compile Include="31-01-21_Patterns\Pattern_SINGLETON_07-02-21\SingleTon.cs" />
+    <Compile Include="31-01-21_Patterns\Pool_Pattern_10-02-21\PoolPattern.cs" />
+    <Compile Include="31-01-21_Patterns\Pool_Pattern_10-02-21\Solution_Targil_PoolPattern.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="31-01-21_Patterns\Pattern_Queue.cs" />
     <Compile Include="31-01-21_Patterns\SolutionTargil.cs" />
-    <Compile Include="Pattern_SINGLETON_07-02-21\Targilim\ConnPooL.cs" />
+    <Compile Include="31-01-21_Patterns\Pattern_SINGLETON_07-02-21\Targilim\ConnPooL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="31-01-21_Patterns\Pool_Pattern_10-02-21\PoolPattern_Theoria.txt" />
+    <Content Include="31-01-21_Patterns\Pool_Pattern_10-02-21\Targil_PoolPattern.txt" />
     <Content Include="31-01-21_Patterns\targil.txt" />
     <Content Include="31-01-21_Patterns\Вопросы.txt" />
-    <Content Include="Pattern_SINGLETON_07-02-21\Targilim\Singleton_Concurrent.txt" />
-    <Content Include="Pattern_SINGLETON_07-02-21\Targilim\targil_ConnPool.txt" />
+    <Content Include="31-01-21_Patterns\Pattern_SINGLETON_07-02-21\Targilim\Singleton_Concurrent.txt" />
+    <Content Include="31-01-21_Patterns\Pattern_SINGLETON_07-02-21\Targilim\targil_ConnPool.txt" />
     <Content Include="targil_TreadPool.txt" />
     <Content Include="treads_theoria.txt" />
   </ItemGroup>

@@ -8,6 +8,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using static Theoria_Dot_Net._31_01_21_Patterns.SingleTon;
 using MultyTrades;
+using MultyTrades._31_01_21_Patterns.Pool_Pattern_10_02_21;
+using static MultyTrades._31_01_21_Patterns.Pool_Pattern_10_02_21.PoolPattern;
+using static MultyTrades._31_01_21_Patterns.Pool_Pattern_10_02_21.Solution_Targil_PoolPattern;
 
 namespace Theoria_Dot_Net
 {
@@ -49,11 +52,11 @@ namespace Theoria_Dot_Net
             {
                 Console.WriteLine($"Main thread {i}");
 
-                Thread t1 = new Thread(foo);
-                threads.Add(t1);
+                Thread t = new Thread(foo);
+                threads.Add(t);
                 //t1.IsBackground = true;
 
-                t1.Start();
+                t.Start();
                 Console.WriteLine("Main thread is going to sleep .............:");
 
                 Thread.Sleep(1000);
@@ -172,6 +175,48 @@ namespace Theoria_Dot_Net
 
                 t1.Join();
                 t2.Join();
+
+
+            /* -------------------------------------------- PATTERN POOL  ---------------------------------------------------------*/
+            MyConnectionPool.Instance.GetConnection(); // blocking
+                                                       // Task:
+                                                       // ...Blocking
+                                                       // ...Sync
+                                                       // ...Async
+
+            // ................
+
+
+            /* --------------------------------------------Solution_targil PATTERN POOL  -----------------------------------------*/
+            Thread t01 = new Thread(() => MyFileManager.Instance.WriteToFile("Line1"));
+            Thread t02 = new Thread(() => MyFileManager.Instance.WriteToFile("Line2"));
+            Thread t3 = new Thread(() => MyFileManager.Instance.WriteToFile("Line3"));
+            Thread t4 = new Thread(() => MyFileManager.Instance.DeleteFile());
+            Thread t5 = new Thread(() => MyFileManager.Instance.CreateFile());
+            Thread t6 = new Thread(() => MyFileManager.Instance.WriteToFile("Line4"));
+            Thread t7 = new Thread(() => MyFileManager.Instance.CreateFile());
+            //Thread t8 = new Thread(() => MyFileManager.Instance.DeleteFile());
+            Thread t8 = new Thread(() => MyFileManager.Instance.WriteToFile("Done."));
+            Thread t9 = new Thread(() => MyFileManager.Instance.WriteToFile("Line5"));
+
+            t01.Start();
+            Thread.Sleep(1000);
+            t02.Start();
+            Thread.Sleep(1000);
+            t3.Start();
+            Thread.Sleep(1000);
+            t4.Start();
+            Thread.Sleep(1000);
+            t5.Start();
+            Thread.Sleep(1000);
+            t6.Start();
+            Thread.Sleep(1000);
+            t7.Start();
+            Thread.Sleep(1000);
+            t8.Start();
+            Thread.Sleep(1000);
+            t9.Start();
+            Thread.Sleep(1000);
 
         }
     }

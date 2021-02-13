@@ -10,6 +10,7 @@ namespace JIRA
     {
         static void Main(string[] args)
         {
+            // НЕТ ПРОГРАММЫ ТОЛЬКО ФАЙЛ ТИПА .txt объясняющий как пользоваться JIRA (Jira_Explanation)
         }
     }
 }

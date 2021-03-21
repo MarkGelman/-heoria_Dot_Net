@@ -1,0 +1,11 @@
+|. Delegate
+
+	1.Sign of delegate
+	2.Action
+	3.Func
+
+||. Linq
+
+|||. Event EventHandler
+
+

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threads", "MultyTrades\Threads.csproj", "{C0DB4441-9658-45B3-9685-B4A5674BEAB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Threads_Patterns", "MultyTrades\Threads_Patterns.csproj", "{C0DB4441-9658-45B3-9685-B4A5674BEAB1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate", "Delegate\Delegate.csproj", "{9FD73FCD-3E8F-4676-A648-E7714DBF5FF2}"
 EndProject
@@ -16,6 +16,21 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JIRA", "JIRA\JIRA.csproj", "{8CE459AA-FAC6-40B7-A8A0-7DF2A9ACC794}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasks", "Tasks\Tasks.csproj", "{BADD66A9-4830-4F35-B88E-F6CD96AF5373}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Treads_Tasks_Patterns", "Treads_Tasks_Patterns", "{B6C33480-69DA-4058-8A58-5BFC563698CD}"
+	ProjectSection(SolutionItems) = preProject
+		Thems_Of_Block.txt = Thems_Of_Block.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegate_Events_Linq", "Delegate_Events_Linq", "{ABAD8FDF-0521-4C16-A9D2-BFAAFC2934F1}"
+	ProjectSection(SolutionItems) = preProject
+		Theme_Of_Block.txt = Theme_Of_Block.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Help Things", "Help Things", "{2A03F4C8-6A9D-4EC2-B59C-A65200D4AA3E}"
+	ProjectSection(SolutionItems) = preProject
+		Multi_Servises\Files.txt\Adraha_Atkana_Docker_24-02-21.txt = Multi_Servises\Files.txt\Adraha_Atkana_Docker_24-02-21.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +69,15 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C0DB4441-9658-45B3-9685-B4A5674BEAB1} = {B6C33480-69DA-4058-8A58-5BFC563698CD}
+		{9FD73FCD-3E8F-4676-A648-E7714DBF5FF2} = {ABAD8FDF-0521-4C16-A9D2-BFAAFC2934F1}
+		{7483448E-0B77-45C3-80D0-0ECA27803F4E} = {ABAD8FDF-0521-4C16-A9D2-BFAAFC2934F1}
+		{DEA66843-02EA-4501-92ED-2F955D172F80} = {ABAD8FDF-0521-4C16-A9D2-BFAAFC2934F1}
+		{8CF0AE2C-448F-4FC9-B97A-EA9F1F97DB73} = {2A03F4C8-6A9D-4EC2-B59C-A65200D4AA3E}
+		{8CE459AA-FAC6-40B7-A8A0-7DF2A9ACC794} = {2A03F4C8-6A9D-4EC2-B59C-A65200D4AA3E}
+		{BADD66A9-4830-4F35-B88E-F6CD96AF5373} = {B6C33480-69DA-4058-8A58-5BFC563698CD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {30179BD1-8B92-4DD5-ABFB-055C53F8A059}

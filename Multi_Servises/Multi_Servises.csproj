@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BADD66A9-4830-4F35-B88E-F6CD96AF5373}</ProjectGuid>
+    <ProjectGuid>{0FA634EF-DB64-450C-B937-8663159FF200}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Tasks</RootNamespace>
-    <AssemblyName>Tasks</AssemblyName>
+    <RootNamespace>Multi_Servises</RootNamespace>
+    <AssemblyName>Multi_Servises</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Tasks_Theoria.txt" />
+    <Content Include="Files.txt\Adraha_Atkana_Docker_24-02-21.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

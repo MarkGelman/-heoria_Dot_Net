@@ -1,0 +1,17 @@
+   I. Multi threaded concept
+
+  II. Lock
+
+ III. Wait-pulse-pulseall
+
+ I\/. Patterns:
+		1.queue
+		2.Connection pool
+
+  \/. Process:
+		1.Thread (foreground/background)
+		2.ThreadPool
+		3.Task
+ \/I. Event for thread
+		1. Manual reset event
+		2. Auto reset event

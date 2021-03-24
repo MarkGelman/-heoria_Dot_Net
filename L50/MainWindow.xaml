@@ -1,0 +1,114 @@
+﻿<Window x:Class="L50.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:L50"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="491.976" Width="800">
+    <Window.Resources>
+        <SolidColorBrush Color="Blue" x:Key="MyYellowWindowsScope"/>
+        <Style TargetType="Button" x:Key="MyWindowScopeStyle1">
+            <Setter Property="Foreground" Value="Blue"/>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
+            <Setter Property="Background" Value="Yellow"/>
+        </Style>
+
+    </Window.Resources>
+    <Grid Margin="22,0,0,35">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="89*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Content="Yellow" Margin="34,21,149,223" x:Name="btnYellow"
+                Background="Yellow" Click="Button_Click" d:IsLocked="True"/>
+        <Button Content="Yellow" Margin="1,21,338,304" x:Name="btnBlueUp"
+                Background="{StaticResource MyYellowWindowsScope}" d:IsLocked="True" Grid.Column="1"/>
+        <Button Content="Yellow" Margin="1,130,338,251" x:Name="btnBlueDown"
+                Background="{StaticResource MyYellowWindowsScope}" Click="Button_Click_1" Grid.Column="1"/>
+        <Button Content="Yellow" Margin="122,21,108,361" 
+                Background="{StaticResource MyGreenAppScope}" Grid.Column="1"/>
+        <Button Content="Yellow" Margin="122,130,108,251" 
+                Background="{DynamicResource MyDynamicColor}" Grid.Column="1"/>
+
+        <Button Content="Button Style" Margin="10,212,186,158" >
+            <Button.Style>
+                <Style TargetType="Button" >
+                    <Setter Property="Foreground" Value=" Red"/>
+                    <Setter Property="FontWeight" Value="ExtraBold"/>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Content="Button Style Resource" Margin="155,213,33,157">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource MyWindowScopeStyle1}">
+
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Content="Button Style Resource + Style"  Margin="310,212,295,158" Grid.ColumnSpan="2">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource MyWindowScopeStyle1}">
+                    <Setter Property="FontWeight" Value="Light"/>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Content="Button Style Resource Global" Margin="165,213,90,160"  Grid.Column="1">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource MyAppStyle}">
+                    <Setter Property="Background" Value="LightPink"/>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button Content="Triggers Style" Margin="20,322,195,51">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource MyAppStyle}">
+                    <Setter Property="Background" Value="LightPink"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="Blue"/>
+                            <Setter Property="Foreground" Value="LightGreen"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <CheckBox Name="cbSample" Content="Hello, world?" Margin="170,310,55,89"/>
+        <TextBlock HorizontalAlignment="Left" Margin="170,342,0,0" 
+                    VerticalAlignment="Top" Width="145" FontSize="25" RenderTransformOrigin="0.592,0.219">
+
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Text" Value="No Checked"/>
+                    <Setter Property="Foreground" Value="Red"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName= cbSample,Path=IsChecked}" Value="True">
+                            <Setter Property="Text" Value="Is Checked!"/>
+                            <Setter Property="Foreground" Value="Green"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Slider IsSnapToTickEnabled="True" x:Name="sld" Minimum="0" Maximum="100" 
+                HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" 
+                Margin="0,310,0,0" Width="225"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23"
+                 Margin="55,342,0,0" TextWrapping="Wrap" 
+                 Text="{Binding ElementName=sld,Path=Value,Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="55,380,0,0"
+                 TextWrapping="Wrap" 
+                 Text="{Binding ElementName=sld,Path=Value,Mode=TwoWay,UpdateSourceTrigger=Default}"
+                 VerticalAlignment="Top" Width="120"/>
+        <Label Content="{Binding MyPerson1}" x:Name="lbl1" Grid.Column="1" HorizontalAlignment="Left"
+               Margin="275,342,0,0" VerticalAlignment="Top" Width="62"/>
+
+    </Grid>
+</Window>
